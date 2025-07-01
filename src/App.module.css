@@ -1,0 +1,25 @@
+/* RESET UNIVERSAL FOR BOX MODEL */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/*MAIN CONTAINERS FOR THE WEB STRUCTURE*/
+.main_container_for_web_structure {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+}
+.frame_container_for_web_elements {
+  height: 97vh;
+  width: 98vw;
+  margin: auto;
+  border: 0.35rem solid black;
+}
