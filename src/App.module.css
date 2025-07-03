@@ -57,3 +57,18 @@ body {
   margin-right: 5px;
   margin-top: 4px;
 }
+
+/*LOGO*/
+.logo__component {
+}
+.logo__size {
+}
+.name_logo__turcoise {
+  color: #00feff;
+}
+.name_logo__white {
+  color: white;
+}
+.name_positionSpeciality {
+  color: white;
+}

@@ -6,7 +6,28 @@ function App() {
       <div className={styles.main_container_for_web_structure}>
         <div className={styles.frame_container_for_web_elements}>
           <div className={styles.frame_container_for_web_elements__layout}>
-            <div className={styles.lateralMenu_nav_leftSide}></div>
+            <div className={styles.lateralMenu_nav_leftSide}>
+              <div className={styles.logo__component}>
+                <div
+                  className={`${styles.name_logo__turcoise} ${styles.logo__size}`}
+                >
+                  Gerard
+                </div>
+                <div
+                  className={`${styles.name_logo__white} ${styles.logo__size}`}
+                >
+                  Bataller
+                </div>
+                <div
+                  className={`${styles.name_logo__white} ${styles.logo__size}`}
+                >
+                  Canet
+                </div>
+                <div className={styles.name_positionSpeciality}>
+                  designer & developer
+                </div>
+              </div>
+            </div>
             <div
               className={styles.separationSpace_between_leftSide_rightSide}
             ></div>
