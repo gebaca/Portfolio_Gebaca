@@ -45,7 +45,8 @@ body {
 .lateral_menu_structure {
   height: 99%;
   display: inline-block;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.76);
+  backdrop-filter: blur(21.299999237060547px);
   margin-top: 4px;
   overflow-y: auto;
   z-index: 10;
@@ -74,6 +75,7 @@ body {
   font-weight: normal;
   font-size: 2.2rem;
   line-height: 0.9;
+  font-family: 'Nico Moji', sans-serif;
 }
 .name_logo__turcoise {
   color: #00feff;
@@ -91,38 +93,47 @@ body {
 /* Estilos para los ENLACES DE NAVEGACIÓN (parte inferior) */
 
 .nav_links {
-  list-style: none; /* Quita los puntos de lista por defecto */
-  padding: 0; /* Quita el padding por defecto de las listas */
-  margin: 0; /* Quita el margen por defecto de las listas */
-  /* font-family: 'TuFuenteMonoEspaciada'; */ /* Define tu fuente para los enlaces */
-  font-size: 1.2rem; /* Tamaño de fuente para los enlaces */
-  color: white; /* Color de texto para todos los enlaces */
+  font-family: 'Nico Moji', sans-serif;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1.25rem;
+  color: white;
 }
 
 .nav_item {
-  margin-bottom: 15px; /* Espacio entre cada enlace */
-  cursor: pointer; /* Indica que es clickeable */
-  position: relative; /* Para el pseudo-elemento del punto */
+  margin-bottom: 15px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease; /* animación suave */
 }
 
 .nav_item:last-child {
-  margin-bottom: 0; /* Quita el margen inferior del último elemento */
+  margin-bottom: 0;
 }
 
-/* Estilo para el PUNTO TURQUESA del elemento activo/seleccionado */
-.nav_item:first-child::before {
-  /* Esto apunta a ".Me" (el primer <li>) */
-  content: '•'; /* El carácter del punto */
-  color: #ffffff; /* Color turquesa */
-  font-size: 1.5rem; /* Tamaño del punto, ajusta si es necesario */
+/* Punto para el item ACTIVO */
+.nav_item.active::before {
+  content: '•'; /* el punto */
+  color: #00feff; /* turquesa brillante */
+  font-size: 1.5rem;
   line-height: 1;
-  position: absolute; /* Posicionamiento absoluto para el punto */
-  left: -15px; /* Mueve el punto un poco a la izquierda del texto */
-  top: 50%; /* Centra verticalmente */
-  transform: translateY(-50%); /* Ajuste fino para el centrado vertical */
+  position: absolute;
+  left: -15px; /* a la izquierda del texto */
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Para futuras interacciones, puedes añadir estilos hover/active a .nav_item */
-/* .nav_item:hover {
-     color: #00FFFF;
-   } */
+/* Mueve ligeramente a la derecha el item activo */
+.nav_item.active {
+  transform: translateX(8px); /* se desplaza 8px */
+  color: #00feff; /* opcional: cambiar color al activo */
+}
+
+/* Opcional: hover para los no activos */
+.nav_item:hover {
+  color: #00feff;
+  transform: translateX(4px); /* pequeño desplazamiento al pasar el mouse */
+}

@@ -1,6 +1,11 @@
+import { useState } from 'react';
 import styles from './App.module.css';
 
 function App() {
+  const [activeIndex, setActiveIndex] = useState(0); // por defecto el primero activo
+
+  const navItems = ['Me', 'Projects', 'Tools', 'Contact'];
+
   return (
     <>
       <div className={styles.main_container_for_web_structure}>
@@ -30,10 +35,17 @@ function App() {
                 </div>
               </div>
               <ul className={styles.nav_links}>
-                <li className={styles.nav_item}>Me</li>
-                <li className={styles.nav_item}>Projects</li>
-                <li className={styles.nav_item}>Tools</li>
-                <li className={styles.nav_item}>Contact</li>
+                {navItems.map((item, index) => (
+                  <li
+                    key={index}
+                    className={`${styles.nav_item} ${
+                      activeIndex === index ? styles.active : ''
+                    }`}
+                    onClick={() => setActiveIndex(index)}
+                  >
+                    {item}
+                  </li>
+                ))}
               </ul>
             </div>
             <div
