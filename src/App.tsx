@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './App.module.css';
 
 function App() {
-  const [activeIndex, setActiveIndex] = useState(0); // por defecto el primero activo
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const navItems = ['Me', 'Projects', 'Tools', 'Contact'];
 
