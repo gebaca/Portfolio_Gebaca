@@ -63,7 +63,7 @@ body {
 }
 .lateralMenu_info_rightSide {
   margin-right: 5px;
-  width: 10%;
+  width: 0%;
 }
 
 /*LOGO*/
@@ -119,7 +119,7 @@ body {
   font-size: 1.5rem;
   line-height: 1;
   position: absolute;
-  left: -15px; /* a la izquierda del texto */
+  left: -14px; /* distancia entre punto y texto */
   top: 50%;
   transform: translateY(-50%);
   opacity: 1;

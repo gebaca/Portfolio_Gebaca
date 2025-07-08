@@ -4,7 +4,11 @@ import styles from './App.module.css';
 function App() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  const navItems = ['Me', 'Projects', 'Tools', 'Contact'];
+  const navItems: string[] = ['Me', 'Projects', 'Tools', 'Contact'];
+
+  const handleNavClick = (index: number) => {
+    setActiveIndex(index);
+  };
 
   return (
     <>
@@ -35,13 +39,13 @@ function App() {
                 </div>
               </div>
               <ul className={styles.nav_links}>
-                {navItems.map((item, index) => (
+                {navItems.map((item: string, index: number) => (
                   <li
                     key={index}
                     className={`${styles.nav_item} ${
                       activeIndex === index ? styles.active : ''
                     }`}
-                    onClick={() => setActiveIndex(index)}
+                    onClick={() => handleNavClick(index)}
                   >
                     {item}
                   </li>
