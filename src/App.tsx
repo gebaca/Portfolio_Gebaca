@@ -19,6 +19,46 @@ function App() {
     styles.rightPanel_contact,
   ];
 
+  const renderRightPanelContent = () => {
+    if (activeIndex === 0) {
+      return (
+        <div className={styles.rightPanel_content}>
+          <h2>Sobre mí</h2>
+          <p>Información personal, bio, foto, etc.</p>
+        </div>
+      );
+    }
+
+    if (activeIndex === 1) {
+      return (
+        <div className={styles.rightPanel_content}>
+          <h2>Proyectos</h2>
+          <p>Lista de proyectos con links e imágenes.</p>
+        </div>
+      );
+    }
+
+    if (activeIndex === 2) {
+      return (
+        <div className={styles.rightPanel_content}>
+          <h2>Herramientas</h2>
+          <p>Stack tecnológico, herramientas favoritas, etc.</p>
+        </div>
+      );
+    }
+
+    if (activeIndex === 3) {
+      return (
+        <div className={styles.rightPanel_content}>
+          <h2>Contacto</h2>
+          <p>Formulario de contacto o redes sociales.</p>
+        </div>
+      );
+    }
+
+    return null; // nada seleccionado
+  };
+
   return (
     <>
       <div className={styles.main_container_for_web_structure}>
@@ -69,12 +109,7 @@ function App() {
                 styles.lateral_menu_structure
               } ${activeIndex !== null ? rightPanelClasses[activeIndex] : ''}`}
             >
-              {activeIndex !== null && (
-                <div className={styles.rightPanel_content}>
-                  <h2>{navItems[activeIndex]}</h2>
-                  <p>Contenido dinámico para {navItems[activeIndex]}</p>
-                </div>
-              )}
+              {activeIndex !== null && renderRightPanelContent()}
             </div>
           </div>
         </div>
