@@ -1,14 +1,23 @@
 import { useState } from 'react';
 import styles from './App.module.css';
 
+const navItems: string[] = ['Me', 'Projects', 'Tools', 'Contact'];
+
 function App() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  const navItems: string[] = ['Me', 'Projects', 'Tools', 'Contact'];
-
   const handleNavClick = (index: number) => {
-    setActiveIndex(index);
+    if (activeIndex === index) {
+      setActiveIndex(null);
+    } else setActiveIndex(index);
   };
+
+  const rightPanelClasses = [
+    styles.rightPanel_me,
+    styles.rightPanel_projects,
+    styles.rightPanel_tools,
+    styles.rightPanel_contact,
+  ];
 
   return (
     <>
@@ -56,8 +65,17 @@ function App() {
               className={styles.separationSpace_between_leftSide_rightSide}
             ></div>
             <div
-              className={`${styles.lateralMenu_info_rightSide} ${styles.lateral_menu_structure}`}
-            ></div>
+              className={`${styles.lateralMenu_info_rightSide} ${
+                styles.lateral_menu_structure
+              } ${activeIndex !== null ? rightPanelClasses[activeIndex] : ''}`}
+            >
+              {activeIndex !== null && (
+                <div className={styles.rightPanel_content}>
+                  <h2>{navItems[activeIndex]}</h2>
+                  <p>Contenido dinámico para {navItems[activeIndex]}</p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

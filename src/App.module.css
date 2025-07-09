@@ -64,6 +64,33 @@ body {
 .lateralMenu_info_rightSide {
   margin-right: 5px;
   width: 0%;
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+/* Clases dinámicas para cada sección */
+.rightPanel_me {
+  width: 10%;
+  color: white;
+}
+
+.rightPanel_projects {
+  width: 20%;
+  color: white;
+}
+
+.rightPanel_tools {
+  width: 30%;
+  color: white;
+}
+
+.rightPanel_contact {
+  width: 40%;
+  color: white;
+}
+
+.rightPanel_content {
+  padding: 20px;
 }
 
 /*LOGO*/
