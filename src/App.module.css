@@ -70,8 +70,9 @@ body {
 
 /* Clases dinámicas para cada sección */
 .rightPanel_me {
-  width: 10%;
+  width: 40vw;
   color: white;
+  padding: 36px;
 }
 
 .rightPanel_projects {
@@ -163,4 +164,46 @@ body {
 .nav_item:hover {
   color: #00feff;
   transform: translateX(4px); /* pequeño desplazamiento al pasar el mouse */
+}
+
+/*RIGHT NAVS*/
+
+.portfolio_picture_container {
+  display: flex;
+  height: 186px;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  overflow: hidden;
+}
+.portfolio_picture {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+.portfolio_picture_picture_support {
+  height: 100%;
+  background-color: #c2b9b0;
+}
+.portfolio_picture_picture_support_one {
+  width: 45px;
+}
+.portfolio_picture_picture_support_two {
+  width: 25px;
+}
+.portfolio_picture_picture_support_three {
+  width: 57px;
+}
+.portfolio_picture_picture_support_four {
+  width: 11px;
+}
+
+/*ORGANIZAR TEXTO NECESITA SEPARACIONES AJUSTES TAMAÑO, NEGRITA Y FUENTE*/
+.portfolio_picture_text {
+  display: flex;
+  height: 795px;
+  padding: 12px 0px;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
 }

@@ -22,16 +22,48 @@ function App() {
   const renderRightPanelContent = () => {
     if (activeIndex === 0) {
       return (
-        <div className={styles.rightPanel_content}>
-          <h2>Sobre mí</h2>
-          <p>Información personal, bio, foto, etc.</p>
-        </div>
+        <>
+          <div className={styles.portfolio_picture_container}>
+            <img
+              className={styles.portfolio_picture}
+              src='src/images/ec4380ab-552f-480c-88e3-a82bb91e45ea.JPG'
+              alt='me'
+            />
+            <div
+              className={`${styles.portfolio_picture_picture_support} ${styles.portfolio_picture_picture_support_one}`}
+            ></div>
+            <div
+              className={`${styles.portfolio_picture_picture_support} ${styles.portfolio_picture_picture_support_two}`}
+            ></div>
+            <div
+              className={`${styles.portfolio_picture_picture_support} ${styles.portfolio_picture_picture_support_three}`}
+            ></div>
+            <div
+              className={`${styles.portfolio_picture_picture_support} ${styles.portfolio_picture_picture_support_four}`}
+            ></div>
+          </div>
+          <div className={styles.portfolio_picture_text}>
+            I'm a frontend developer with a background in video game design and
+            development. I was born in Valencia in 2001 and studied the
+            Bachelor's Degree in Video Game Design and Development at Florida
+            Universitària, affiliated with the Polytechnic University of
+            Valencia. Later, I completed a master's degree at ESAT focused on
+            web development with a UX/UI approach. During my game development
+            studies, I realized I was particularly interested in elements like
+            user interfaces, menus, and overall user experience. That led me to
+            shift my focus toward frontend development, where I aim to combine
+            functionality with clean and coherent visual design. I'm fluent in
+            Spanish and English, and I enjoy working collaboratively. Bridging
+            the gap between technical implementation and visual execution to
+            create complete, user-centered web experiences.
+          </div>
+        </>
       );
     }
 
     if (activeIndex === 1) {
       return (
-        <div className={styles.rightPanel_content}>
+        <div>
           <h2>Proyectos</h2>
           <p>Lista de proyectos con links e imágenes.</p>
         </div>
@@ -40,7 +72,7 @@ function App() {
 
     if (activeIndex === 2) {
       return (
-        <div className={styles.rightPanel_content}>
+        <div>
           <h2>Herramientas</h2>
           <p>Stack tecnológico, herramientas favoritas, etc.</p>
         </div>
@@ -49,7 +81,7 @@ function App() {
 
     if (activeIndex === 3) {
       return (
-        <div className={styles.rightPanel_content}>
+        <div>
           <h2>Contacto</h2>
           <p>Formulario de contacto o redes sociales.</p>
         </div>
