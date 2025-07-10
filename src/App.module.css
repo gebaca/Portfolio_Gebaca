@@ -198,12 +198,14 @@ body {
   width: 11px;
 }
 
-/*ORGANIZAR TEXTO NECESITA SEPARACIONES AJUSTES TAMAÑO, NEGRITA Y FUENTE*/
 .portfolio_picture_text {
-  display: flex;
-  height: 795px;
-  padding: 12px 0px;
-  align-items: flex-start;
-  gap: 10px;
-  align-self: stretch;
+  max-height: 795px;
+  padding: 12px 0;
+  overflow: auto;
+  line-height: 1.6;
+  font-size: 17px;
+  color: #ffffff;
+  text-align: left;
+  display: block;
+  font-family: 'Inter';
 }

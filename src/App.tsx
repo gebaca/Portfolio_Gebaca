@@ -43,19 +43,24 @@ function App() {
             ></div>
           </div>
           <div className={styles.portfolio_picture_text}>
-            I'm a frontend developer with a background in video game design and
-            development. I was born in Valencia in 2001 and studied the
-            Bachelor's Degree in Video Game Design and Development at Florida
-            Universitària, affiliated with the Polytechnic University of
-            Valencia. Later, I completed a master's degree at ESAT focused on
-            web development with a UX/UI approach. During my game development
-            studies, I realized I was particularly interested in elements like
-            user interfaces, menus, and overall user experience. That led me to
-            shift my focus toward frontend development, where I aim to combine
-            functionality with clean and coherent visual design. I'm fluent in
-            Spanish and English, and I enjoy working collaboratively. Bridging
-            the gap between technical implementation and visual execution to
-            create complete, user-centered web experiences.
+            I'm a <b>frontend developer </b> with a background in video game
+            design and development. I was born in Valencia in 2001 and studied
+            the Bachelor's Degree in <b>Video Game Design </b> and
+            <b> Development </b> at Florida Universitària, affiliated with the
+            Polytechnic University of Valencia. Later, I completed a master's
+            degree at ESAT focused on <b>web development </b> with a
+            <b> UX/UI </b>
+            approach. <br />
+            <br /> During my game development studies, I realized I was
+            particularly interested in elements like
+            <b>user interfaces, menus,</b> and overall <b>user experience </b>.
+            That led me to shift my focus toward frontend development, where I
+            aim to combine <b>functionality </b> with <b>clean </b> and coherent
+            <b> visual design </b>.<br />
+            <br /> I'm <b>fluent </b> in Spanish and
+            <b> English </b>, and I enjoy working <b>collaboratively </b>.
+            Bridging the gap between <b>technical </b> implementation and visual
+            execution to create complete, <b>user-centered </b> web experiences.
           </div>
         </>
       );
@@ -93,6 +98,10 @@ function App() {
 
   return (
     <>
+      <link
+        href='https://fonts.googleapis.com/css?family=Inter'
+        rel='stylesheet'
+      ></link>
       <div className={styles.main_container_for_web_structure}>
         <div className={styles.frame_container_for_web_elements}>
           <div className={styles.frame_container_for_web_elements__layout}>
