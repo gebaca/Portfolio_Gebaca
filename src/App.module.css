@@ -81,7 +81,7 @@ body {
 }
 
 .rightPanel_tools {
-  width: 30%;
+  width: 34vw;
   color: white;
 }
 
@@ -168,6 +168,7 @@ body {
 
 /*RIGHT NAVS*/
 
+/*ME*/
 .portfolio_picture_container {
   display: flex;
   height: 186px;
@@ -208,4 +209,48 @@ body {
   text-align: left;
   display: block;
   font-family: 'Inter';
+}
+
+/*TOOLS*/
+.mask_tools_icons {
+  width: 101px;
+  height: 101px;
+  background: white; /* el agujero será blanco */
+}
+.mask_tools_icons__3DMAX {
+  -webkit-mask: url('src/images/3DMAX.svg') no-repeat center/contain;
+  mask: url('src/images/3DMAX.svg') no-repeat center/contain;
+}
+.mask_tools_icons__CSHARP {
+  -webkit-mask: url('src/images/C#.svg') no-repeat center/contain;
+  mask: url('src/images/C#.svg') no-repeat center/contain;
+}
+.mask_tools_icons__javscript {
+  -webkit-mask: url('src/images/Javascript.svg') no-repeat center/contain;
+  mask: url('src/images/Javascript.svg') no-repeat center/contain;
+}
+.mask_tools_icons__maya {
+  -webkit-mask: url('src/images/Maya.svg') no-repeat center/contain;
+  mask: url('src/images/Maya.svg') no-repeat center/contain;
+}
+.mask_tools_icons__react {
+  -webkit-mask: url('src/images/React.svg') no-repeat center/contain;
+  mask: url('src/images/React.svg') no-repeat center/contain;
+}
+.mask_tools_icons__typescript {
+  -webkit-mask: url('src/images/Typescript.svg') no-repeat center/contain;
+  mask: url('src/images/Typescript.svg') no-repeat center/contain;
+}
+.mask_tools_icons__unity {
+  -webkit-mask: url('src/images/Unity.svg') no-repeat center/contain;
+  mask: url('src/images/Unity.svg') no-repeat center/contain;
+}
+.mask_tools_icons__unreal {
+  -webkit-mask: url('src/images/Unreal.svg') no-repeat center/contain;
+  mask: url('src/images/Unreal.svg') no-repeat center/contain;
+}
+/*PONER EL SVG QUE TOCA*/
+.mask_tools_icons__figma {
+  -webkit-mask: url('Poner figma') no-repeat center/contain;
+  mask: url('Poner figma') no-repeat center/contain;
 }

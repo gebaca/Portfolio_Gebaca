@@ -67,20 +67,40 @@ function App() {
     }
 
     if (activeIndex === 1) {
-      return (
-        <div>
-          <h2>Proyectos</h2>
-          <p>Lista de proyectos con links e imágenes.</p>
-        </div>
-      );
+      return <></>;
     }
 
     if (activeIndex === 2) {
       return (
-        <div>
-          <h2>Herramientas</h2>
-          <p>Stack tecnológico, herramientas favoritas, etc.</p>
-        </div>
+        <>
+          <div
+            className={`${styles.mask_tools_icons} ${styles.mask_tools_icons__3DMAX}`}
+          ></div>
+          <div
+            className={`${styles.mask_tools_icons} ${styles.mask_tools_icons__CSHARP}`}
+          ></div>
+          <div
+            className={`${styles.mask_tools_icons} ${styles.mask_tools_icons__javscript}`}
+          ></div>
+          <div
+            className={`${styles.mask_tools_icons} ${styles.mask_tools_icons__maya}`}
+          ></div>
+          <div
+            className={`${styles.mask_tools_icons} ${styles.mask_tools_icons__react}`}
+          ></div>
+          <div
+            className={`${styles.mask_tools_icons} ${styles.mask_tools_icons__typescript}`}
+          ></div>
+          <div
+            className={`${styles.mask_tools_icons} ${styles.mask_tools_icons__unity}`}
+          ></div>
+          <div
+            className={`${styles.mask_tools_icons} ${styles.mask_tools_icons__unreal}`}
+          ></div>
+          <div
+            className={`${styles.mask_tools_icons} ${styles.mask_tools_icons__figma}`}
+          ></div>
+        </>
       );
     }
 
