@@ -72,35 +72,62 @@ function App() {
 
     if (activeIndex === 2) {
       return (
-        <>
-          <div
-            className={`${styles.mask_tools_icons} ${styles.mask_tools_icons__3DMAX}`}
-          ></div>
-          <div
-            className={`${styles.mask_tools_icons} ${styles.mask_tools_icons__CSHARP}`}
-          ></div>
-          <div
-            className={`${styles.mask_tools_icons} ${styles.mask_tools_icons__javscript}`}
-          ></div>
-          <div
-            className={`${styles.mask_tools_icons} ${styles.mask_tools_icons__maya}`}
-          ></div>
-          <div
-            className={`${styles.mask_tools_icons} ${styles.mask_tools_icons__react}`}
-          ></div>
-          <div
-            className={`${styles.mask_tools_icons} ${styles.mask_tools_icons__typescript}`}
-          ></div>
-          <div
-            className={`${styles.mask_tools_icons} ${styles.mask_tools_icons__unity}`}
-          ></div>
-          <div
-            className={`${styles.mask_tools_icons} ${styles.mask_tools_icons__unreal}`}
-          ></div>
-          <div
-            className={`${styles.mask_tools_icons} ${styles.mask_tools_icons__figma}`}
-          ></div>
-        </>
+        <div className={styles.tools_grid}>
+          <div className={styles.tool_item}>
+            <div
+              className={`${styles.mask_tools_icons} ${styles.mask_tools_icons__3DMAX}`}
+            ></div>
+            <span className={styles.tool_name}>3ds Max</span>
+          </div>
+          <div className={styles.tool_item}>
+            <div
+              className={`${styles.mask_tools_icons} ${styles.mask_tools_icons__CSHARP}`}
+            ></div>
+            <span className={styles.tool_name}>C#</span>
+          </div>
+          <div className={styles.tool_item}>
+            <div
+              className={`${styles.mask_tools_icons} ${styles.mask_tools_icons__javscript}`}
+            ></div>
+            <span className={styles.tool_name}>JavaScript</span>
+          </div>
+          <div className={styles.tool_item}>
+            <div
+              className={`${styles.mask_tools_icons} ${styles.mask_tools_icons__maya}`}
+            ></div>
+            <span className={styles.tool_name}>Maya</span>
+          </div>
+          <div className={styles.tool_item}>
+            <div
+              className={`${styles.mask_tools_icons} ${styles.mask_tools_icons__react}`}
+            ></div>
+            <span className={styles.tool_name}>React</span>
+          </div>
+          <div className={styles.tool_item}>
+            <div
+              className={`${styles.mask_tools_icons} ${styles.mask_tools_icons__typescript}`}
+            ></div>
+            <span className={styles.tool_name}>typescript</span>
+          </div>
+          <div className={styles.tool_item}>
+            <div
+              className={`${styles.mask_tools_icons} ${styles.mask_tools_icons__unity}`}
+            ></div>
+            <span className={styles.tool_name}>Unity</span>
+          </div>
+          <div className={styles.tool_item}>
+            <div
+              className={`${styles.mask_tools_icons} ${styles.mask_tools_icons__unreal}`}
+            ></div>
+            <span className={styles.tool_name}>unreal</span>
+          </div>
+          <div className={styles.tool_item}>
+            <div
+              className={`${styles.mask_tools_icons} ${styles.mask_tools_icons__figma}`}
+            ></div>
+            <span className={styles.tool_name}>figma</span>
+          </div>
+        </div>
       );
     }
 
