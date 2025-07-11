@@ -233,31 +233,35 @@ body {
 .mask_tools_icons {
   width: 91px;
   height: 91px;
-  background: white;
-
-  /* ESTÁNDAR */
-  mask-repeat: no-repeat;
-  mask-position: center;
-  mask-size: contain;
-
-  /* WEBKIT (Chrome, Safari) */
+  background-color: rgba(0, 0, 0, 0.7); /* div negro */
+  /* Hacer agujero con la máscara */
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
   -webkit-mask-size: contain;
+  -webkit-mask-composite: destination-out;
+
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  mask-composite: exclude;
+
+  /* Permitir ver lo de atrás */
+  backdrop-filter: blur(10px); /* opcional: desenfoque */
 }
 
 .tool_name {
   font-size: 0.9rem;
   color: white;
   text-align: center;
+  font-family: 'Inter';
 }
 .mask_tools_icons__3DMAX {
   -webkit-mask: url('src/images/3DMAX.svg') no-repeat center/contain;
   mask: url('src/images/3DMAX.svg') no-repeat center/contain;
 }
 .mask_tools_icons__CSHARP {
-  -webkit-mask: url('src/images/C#.svg') no-repeat center/contain;
-  mask: url('src/images/C#.svg') no-repeat center/contain;
+  -webkit-mask: url('src/images/c--4.svg') no-repeat center/contain;
+  mask: url('src/images/c--4.svg') no-repeat center/contain;
 }
 .mask_tools_icons__javscript {
   -webkit-mask: url('src/images/Javascript.svg') no-repeat center/contain;
