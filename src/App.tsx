@@ -5,11 +5,15 @@ const navItems: string[] = ['Me', 'Projects', 'Tools', 'Contact'];
 
 function App() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [selectedProject, setSelectedProject] = useState<number | null>(null);
 
   const handleNavClick = (index: number) => {
     if (activeIndex === index) {
       setActiveIndex(null);
     } else setActiveIndex(index);
+  };
+  const handleProjectClick = (index: number) => {
+    setSelectedProject(index);
   };
 
   const rightPanelClasses = [
@@ -17,6 +21,43 @@ function App() {
     styles.rightPanel_projects,
     styles.rightPanel_tools,
     styles.rightPanel_contact,
+  ];
+
+  const projects = [
+    {
+      name: 'Hyrulepedia',
+      description:
+        'Hyrulepedia is an interactive digital card collector created by a team of four. I was responsible for programming key parts of the web application, including database integration, user profile management, visual effects, and contributing to the design and overall concept of the site.',
+      image: 'src/images/LOGIN PAGE.png',
+      youtubeLink: null,
+      link: 'https://hyrulepedia.web.app/',
+    },
+    {
+      name: 'Never Late',
+      description:
+        'Never Late is a serious game developed with a team of 10 members. My contributions included programming the character controller, implementing various visual effects, and designing several of the minigames.',
+      image: null,
+      youtubeLink:
+        'https://www.youtube.com/embed/WEezmGnj32s?si=1dUPJN5J5T0l4RGi',
+      link: 'https://potasiogames.itch.io/never-late',
+    },
+    {
+      name: 'BloodForged',
+      description:
+        'BloodForged is a hack-and-slash game developed with a team of 10. I programmed the enemy AI, added visual effects, and designed the user interface (UI) to ensure an engaging player experience.',
+      image: null,
+      youtubeLink:
+        'https://www.youtube.com/embed/EYUvRKCsTxk?si=nMOTQBbcp37TAMcU',
+      link: 'https://potasiogames.itch.io/blood-forged',
+    },
+    {
+      name: 'Aventura por Valencia',
+      description:
+        'Aventura por Valencia is an educational game created with two teammates, where I was responsible for programming the minigames and designing the user experience (UX) and user interface (UI).',
+      image: 'src/images/AventuraPorVLC.png',
+      youtubeLink: null,
+      link: 'https://ficiv.org/minijuego/',
+    },
   ];
 
   const renderRightPanelContent = () => {
@@ -67,7 +108,90 @@ function App() {
     }
 
     if (activeIndex === 1) {
-      return <></>;
+      // Si no hay proyecto seleccionado, mostramos la lista
+      if (selectedProject === null) {
+        return (
+          <div className={styles.projectList}>
+            {projects.map((project, index) => (
+              <div
+                key={index}
+                className={styles.projectItem}
+                onClick={() => handleProjectClick(index)}
+              >
+                <h3>{project.name}</h3>
+                <p>{project.description.slice(0, 100)}...</p>
+                {project.image && (
+                  <img
+                    src={project.image}
+                    alt={project.name}
+                    className={styles.projectThumbnail}
+                  />
+                )}
+                {project.youtubeLink && (
+                  <div className={styles.projectThumbnail}>
+                    <iframe
+                      width='100%'
+                      height='200'
+                      src={project.youtubeLink}
+                      title={project.name}
+                      frameBorder='0'
+                      allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        );
+      }
+
+      // Si hay proyecto seleccionado, mostramos su detalle
+      const project = projects[selectedProject];
+      return (
+        <div className={styles.projectDetail}>
+          <h2>{project.name}</h2>
+          <p>{project.description}</p>
+
+          {project.image && (
+            <img
+              src={project.image}
+              alt={project.name}
+              className={styles.projectImage}
+            />
+          )}
+
+          {project.youtubeLink && (
+            <div className={styles.projectVideo}>
+              <iframe
+                width='100%'
+                height='400'
+                src={project.youtubeLink}
+                title={project.name}
+                frameBorder='0'
+                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                allowFullScreen
+              ></iframe>
+            </div>
+          )}
+
+          <a
+            href={project.link}
+            target='_blank'
+            rel='noopener noreferrer'
+            className={styles.projectLink}
+          >
+            View Project
+          </a>
+
+          <button
+            className={styles.backButton}
+            onClick={() => setSelectedProject(null)}
+          >
+            Back to Projects
+          </button>
+        </div>
+      );
     }
 
     if (activeIndex === 2) {
@@ -133,9 +257,37 @@ function App() {
 
     if (activeIndex === 3) {
       return (
-        <div>
-          <h2>Contacto</h2>
-          <p>Formulario de contacto o redes sociales.</p>
+        <div className={styles.contactContainer}>
+          <h2>Contact</h2>
+          <p>You can reach me through the following channels:</p>
+          <ul className={styles.contactList}>
+            {/*<li>
+              <a
+                href='https://www.linkedin.com/in/gerard-bataller-canet/'
+                className={styles.contactLink}
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                LinkedIn
+              </a>
+            </li>*/}
+            <li>
+              <a
+                href='https://github.com/gebaca/Portfolio_Gebaca.git'
+                className={styles.contactLink}
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                GitHub
+              </a>
+            </li>
+            <li>
+              <a className={styles.contactLink_no_hover}>gebaca01@gmail.com</a>
+            </li>
+            <li>
+              <a className={styles.contactLink_no_hover}>+34 615 180 314</a>
+            </li>
+          </ul>
         </div>
       );
     }
