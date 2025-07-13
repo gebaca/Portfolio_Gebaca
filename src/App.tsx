@@ -28,7 +28,7 @@ function App() {
       name: 'Hyrulepedia',
       description:
         'Hyrulepedia is an interactive digital card collector created by a team of four. I was responsible for programming key parts of the web application, including database integration, user profile management, visual effects, and contributing to the design and overall concept of the site.',
-      image: 'src/images/LOGIN PAGE.png',
+      image: '/images/LOGIN PAGE.png',
       youtubeLink: null,
       link: 'https://hyrulepedia.web.app/',
     },
@@ -54,7 +54,7 @@ function App() {
       name: 'Aventura por Valencia',
       description:
         'Aventura por Valencia is an educational game created with two teammates, where I was responsible for programming the minigames and designing the user experience (UX) and user interface (UI).',
-      image: 'src/images/AventuraPorVLC.png',
+      image: '/images/AventuraPorVLC.png',
       youtubeLink: null,
       link: 'https://ficiv.org/minijuego/',
     },
@@ -67,7 +67,7 @@ function App() {
           <div className={styles.portfolio_picture_container}>
             <img
               className={styles.portfolio_picture}
-              src='src/images/ec4380ab-552f-480c-88e3-a82bb91e45ea.JPG'
+              src='/images/ec4380ab-552f-480c-88e3-a82bb91e45ea.JPG'
               alt='me'
             />
             <div
@@ -297,6 +297,15 @@ function App() {
 
   return (
     <>
+      <div className={styles.shaderBackground}>
+        <iframe
+          width='100%'
+          height='100%'
+          frameBorder='0'
+          src='https://www.shadertoy.com/embed/WXB3zd?gui=false&t=10&paused=false&muted=true'
+          allowFullScreen
+        ></iframe>
+      </div>
       <link
         href='https://fonts.googleapis.com/css?family=Inter'
         rel='stylesheet'

@@ -16,8 +16,6 @@ body {
   height: 100vh;
   width: 100vw;
   display: flex;
-
-  background-color: #ccc; /*BORRAR*/
 }
 .frame_container_for_web_elements {
   height: 97vh;
@@ -39,7 +37,6 @@ body {
   margin: auto;
   height: 100%;
   width: 100%;
-  background-color: rgb(0, 83, 83, 0.7);
   z-index: 0;
 }
 .lateral_menu_structure {
@@ -256,41 +253,41 @@ body {
   font-family: 'Inter';
 }
 .mask_tools_icons__3DMAX {
-  -webkit-mask: url('src/images/3DMAX.svg') no-repeat center/contain;
-  mask: url('src/images/3DMAX.svg') no-repeat center/contain;
+  -webkit-mask: url('/images/3DMAX.svg') no-repeat center/contain;
+  mask: url('/images/3DMAX.svg') no-repeat center/contain;
 }
 .mask_tools_icons__CSHARP {
-  -webkit-mask: url('src/images/Csharp.svg') no-repeat center/contain;
-  mask: url('src/images/Csharp.svg') no-repeat center/contain;
+  -webkit-mask: url('/images/Csharp.svg') no-repeat center/contain;
+  mask: url('/images/Csharp.svg') no-repeat center/contain;
 }
 .mask_tools_icons__javscript {
-  -webkit-mask: url('src/images/Javascript.svg') no-repeat center/contain;
-  mask: url('src/images/Javascript.svg') no-repeat center/contain;
+  -webkit-mask: url('/images/Javascript.svg') no-repeat center/contain;
+  mask: url('/images/Javascript.svg') no-repeat center/contain;
 }
 .mask_tools_icons__maya {
-  -webkit-mask: url('src/images/Maya.svg') no-repeat center/contain;
-  mask: url('src/images/Maya.svg') no-repeat center/contain;
+  -webkit-mask: url('/images/Maya.svg') no-repeat center/contain;
+  mask: url('/images/Maya.svg') no-repeat center/contain;
 }
 .mask_tools_icons__react {
-  -webkit-mask: url('src/images/React.svg') no-repeat center/contain;
-  mask: url('src/images/React.svg') no-repeat center/contain;
+  -webkit-mask: url('/images/React.svg') no-repeat center/contain;
+  mask: url('/images/React.svg') no-repeat center/contain;
 }
 .mask_tools_icons__typescript {
-  -webkit-mask: url('src/images/Typescript.svg') no-repeat center/contain;
-  mask: url('src/images/Typescript.svg') no-repeat center/contain;
+  -webkit-mask: url('/images/Typescript.svg') no-repeat center/contain;
+  mask: url('/images/Typescript.svg') no-repeat center/contain;
 }
 .mask_tools_icons__unity {
-  -webkit-mask: url('src/images/Unity.svg') no-repeat center/contain;
-  mask: url('src/images/Unity.svg') no-repeat center/contain;
+  -webkit-mask: url('/images/Unity.svg') no-repeat center/contain;
+  mask: url('/images/Unity.svg') no-repeat center/contain;
 }
 .mask_tools_icons__unreal {
-  -webkit-mask: url('src/images/Unreal.svg') no-repeat center/contain;
-  mask: url('src/images/Unreal.svg') no-repeat center/contain;
+  -webkit-mask: url('/images/Unreal.svg') no-repeat center/contain;
+  mask: url('/images/Unreal.svg') no-repeat center/contain;
 }
 /*PONER EL SVG QUE TOCA*/
 .mask_tools_icons__figma {
-  -webkit-mask: url('src/images/figma.svg') no-repeat center/contain;
-  mask: url('src/images/figma.svg') no-repeat center/contain;
+  -webkit-mask: url('/images/figma.svg') no-repeat center/contain;
+  mask: url('/images/figma.svg') no-repeat center/contain;
 }
 
 /*PROJECT*/
@@ -437,4 +434,17 @@ body {
 .contactLink:hover {
   color: #008c9e;
   transform: translateX(4px);
+}
+
+/*FONDO*/
+.shaderBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.shaderBackground iframe {
+  pointer-events: none;
 }
