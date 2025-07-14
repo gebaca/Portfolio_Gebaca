@@ -448,3 +448,145 @@ body {
 .shaderBackground iframe {
   pointer-events: none;
 }
+
+@media (max-width: 500px) {
+  /* Ajustes generales */
+  .main_container_for_web_structure,
+  .frame_container_for_web_elements,
+  .frame_container_for_web_elements__layout {
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .frame_container_for_web_elements {
+    border: none; /* quita bordes para ahorrar espacio */
+  }
+
+  /* Menú lateral (ahora en la parte superior) */
+  .lateralMenu_nav_leftSide {
+    width: 100%;
+    height: auto;
+    margin-left: 0;
+    padding: 10px;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .logo__component {
+    display: none; /* Oculta el logo en móviles para más espacio */
+  }
+
+  .nav_links {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    font-size: 1rem;
+  }
+
+  .nav_item {
+    margin-bottom: 0;
+  }
+
+  .nav_item.active::before {
+    display: none; /* quita el punto en móvil */
+  }
+
+  .nav_item.active {
+    transform: none;
+    color: #00feff;
+  }
+
+  /* Panel derecho */
+  .lateralMenu_info_rightSide {
+    width: 100%;
+    margin-right: 0;
+    flex-grow: 1;
+    overflow: hidden; /* controla desbordes */
+  }
+
+  .rightPanel_me,
+  .rightPanel_projects,
+  .rightPanel_tools,
+  .rightPanel_contact {
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    height: 100%;
+    max-height: calc(100vh - 60px); /* resta altura del menú */
+    overflow: hidden; /* que no salga nada del panel */
+  }
+
+  /* Scroll solo en textos largos */
+  .portfolio_picture_text {
+    max-height: calc(100vh - 250px);
+    overflow-y: auto;
+    font-size: 0.95rem;
+  }
+
+  /* Ajustes en Tools */
+  .rightPanel_tools {
+    height: calc(100vh - 60px); /* resto espacio del menú */
+    overflow: hidden; /* evita desbordar el panel */
+  }
+
+  .tools_grid {
+    max-height: 100%; /* ocupa todo el panel */
+    overflow-y: auto; /* scroll solo si hay demasiados iconos */
+    padding-right: 6px; /* para no tapar con el scrollbar */
+  }
+
+  .tools_grid::-webkit-scrollbar {
+    width: 6px;
+  }
+  .tools_grid::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+  }
+  .tools_grid {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  }
+
+  .mask_tools_icons {
+    width: 60px;
+    height: 60px;
+  }
+
+  .tool_name {
+    font-size: 0.8rem;
+  }
+
+  /* Ajustes en Projects */
+  .projectList {
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .projectItem {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .projectThumbnail {
+    max-height: 150px;
+  }
+
+  /* Contactos */
+  .contactContainer {
+    padding: 15px;
+    font-size: 1rem;
+  }
+
+  .contactLink {
+    font-size: 1rem;
+  }
+
+  /* Fondo shader */
+  .shaderBackground {
+    width: 100vw;
+    height: 100vh;
+  }
+}
