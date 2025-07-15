@@ -70,6 +70,10 @@ body {
   width: 40vw;
   color: white;
   padding: 36px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* evita que los hijos corten overflow */
+  overflow: hidden;
 }
 
 .rightPanel_projects {
@@ -199,15 +203,23 @@ body {
 }
 
 .portfolio_picture_text {
-  max-height: 795px;
+  max-height: calc(
+    100vh - 250px
+  ); /* ocupa todo el espacio disponible menos cabecera/logo */
   padding: 12px 0;
-  overflow: auto;
+  overflow-y: auto;
   line-height: 1.6;
   font-size: 17px;
   color: #ffffff;
   text-align: left;
   display: block;
   font-family: 'Inter';
+  scrollbar-width: none; /* Firefox oculta scrollbar */
+  -ms-overflow-style: none; /* IE oculta scrollbar */
+}
+
+.portfolio_picture_text::-webkit-scrollbar {
+  display: none; /* Chrome/Safari oculta scrollbar */
 }
 
 /*TOOLS*/
@@ -215,9 +227,18 @@ body {
 .tools_grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 20px;
+  gap: 15px;
   justify-items: center;
-  padding: 20px;
+  padding: 10px;
+  max-height: 100%; /* evita desbordar */
+  overflow-y: auto; /* scroll interno */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Ocultar scrollbar en grid */
+.tools_grid::-webkit-scrollbar {
+  display: none;
 }
 
 .tool_item {
