@@ -207,13 +207,13 @@ body {
     100vh - 250px
   ); /* ocupa todo el espacio disponible menos cabecera/logo */
   padding: 12px 0;
-  overflow-y: auto;
   line-height: 1.6;
   font-size: 17px;
   color: #ffffff;
   text-align: left;
   display: block;
   font-family: 'Inter';
+  overflow-y: auto;
   scrollbar-width: none; /* Firefox oculta scrollbar */
   -ms-overflow-style: none; /* IE oculta scrollbar */
 }
@@ -603,6 +603,154 @@ body {
 
   .contactLink {
     font-size: 1rem;
+  }
+
+  /* Fondo shader */
+  .shaderBackground {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Ajustes generales */
+  .main_container_for_web_structure,
+  .frame_container_for_web_elements,
+  .frame_container_for_web_elements__layout {
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .frame_container_for_web_elements {
+    border: none; /* quita bordes para ahorrar espacio */
+  }
+
+  /* Menú lateral (ahora en la parte superior) */
+  .lateralMenu_nav_leftSide {
+    width: 100%;
+    height: auto;
+    margin-left: 0;
+    padding: 15px;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .logo__component {
+    display: none; /* Oculta el logo para ganar espacio */
+  }
+
+  .nav_links {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    font-size: 1.1rem;
+  }
+
+  .nav_item {
+    margin-bottom: 0;
+  }
+
+  .nav_item.active::before {
+    display: none; /* quita el punto en pantallas estrechas */
+  }
+
+  .nav_item.active {
+    transform: none;
+    color: #00feff;
+  }
+
+  /* Panel derecho */
+  .lateralMenu_info_rightSide {
+    width: 100%;
+    margin-right: 0;
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+  .rightPanel_me,
+  .rightPanel_projects,
+  .rightPanel_tools,
+  .rightPanel_contact {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    height: 100%;
+    max-height: calc(100vh - 70px); /* deja espacio para nav superior */
+    overflow-y: auto; /* scroll solo si hay mucho contenido */
+    -webkit-overflow-scrolling: touch; /* scroll suave */
+  }
+
+  /* Scroll invisible */
+  .rightPanel_me::-webkit-scrollbar,
+  .rightPanel_projects::-webkit-scrollbar,
+  .rightPanel_tools::-webkit-scrollbar,
+  .rightPanel_contact::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
+
+  .rightPanel_me,
+  .rightPanel_projects,
+  .rightPanel_tools,
+  .rightPanel_contact {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE */
+  }
+
+  /* Ajustes en ME: texto ocupa todo el panel */
+  .portfolio_picture_text {
+    max-height: calc(100vh - 300px); /* ajusta altura según cabecera */
+    overflow-y: auto;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  /* Ajustes en Tools */
+  .tools_grid {
+    max-height: 100%;
+    overflow-y: auto;
+    padding: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+
+  .tools_grid::-webkit-scrollbar {
+    display: none; /* ocultar scrollbar */
+  }
+
+  .mask_tools_icons {
+    width: 70px;
+    height: 70px;
+  }
+
+  .tool_name {
+    font-size: 0.9rem;
+  }
+
+  /* Ajustes en Projects */
+  .projectList {
+    flex-direction: column;
+    padding: 15px;
+    gap: 15px;
+  }
+
+  .projectItem {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .projectThumbnail {
+    max-height: 180px;
+  }
+
+  /* Contactos */
+  .contactContainer {
+    padding: 20px;
+    font-size: 1.05rem;
+  }
+
+  .contactLink {
+    font-size: 1.05rem;
   }
 
   /* Fondo shader */
