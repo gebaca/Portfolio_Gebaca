@@ -6,11 +6,16 @@ const navItems: string[] = ['Me', 'Projects', 'Tools', 'Contact'];
 function App() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
   const handleNavClick = (index: number) => {
     if (activeIndex === index) {
       setActiveIndex(null);
-    } else setActiveIndex(index);
+    } else {
+      setActiveIndex(index);
+    }
+    setSelectedProject(null);
+    setIsMobileMenuOpen(false);
   };
   const handleProjectClick = (index: number) => {
     setSelectedProject(index);
@@ -310,6 +315,37 @@ function App() {
         href='https://fonts.googleapis.com/css?family=Inter'
         rel='stylesheet'
       ></link>
+      {/* Botón hamburguesa (visible solo en móvil) */}
+      <button
+        className={`${styles.hamburger} ${
+          isMobileMenuOpen ? styles.hamburger_active : ''
+        }`}
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      {/* Menú móvil */}
+      <div
+        className={`${styles.mobile_nav} ${
+          isMobileMenuOpen ? styles.mobile_nav_open : ''
+        }`}
+      >
+        <ul className={styles.nav_links_mobile}>
+          {navItems.map((item, index) => (
+            <li
+              key={index}
+              className={
+                activeIndex === index ? styles.nav_item_active_mobile : ''
+              }
+              onClick={() => handleNavClick(index)}
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
       <div className={styles.main_container_for_web_structure}>
         <div className={styles.frame_container_for_web_elements}>
           <div className={styles.frame_container_for_web_elements__layout}>

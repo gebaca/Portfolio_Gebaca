@@ -8,99 +8,81 @@ html,
 body {
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow: hidden; /* Asegura que no haya scroll general en el body */
+  height: 100%; /* Asegura que el body ocupe toda la altura */
+  width: 100%; /* Asegura que el body ocupe todo el ancho */
 }
 
 /*MAIN CONTAINERS FOR THE WEB STRUCTURE*/
 .main_container_for_web_structure {
-  height: 100vh;
-  width: 100vw;
+  height: 100vh; /* Ocupa el 100% del viewport height */
+  width: 100vw; /* Ocupa el 100% del viewport width */
   display: flex;
 }
 .frame_container_for_web_elements {
   height: 97vh;
   width: 98vw;
-  margin: auto;
-  border: 5px solid black;
+  margin: auto; /* Centra el contenedor en la pantalla */
+  border: 5px solid black; /* Borde visible en escritorio */
+  padding: 3px; /* Añade un padding de 3px alrededor del contenido interno */
+  border-radius: 0; /* Por defecto sin border-radius en escritorio */
 }
 
 /*LAYOUT MAIN CONTAINER*/
 .frame_container_for_web_elements__layout {
   display: flex;
-  flex-direction: row;
+  flex-direction: row; /* Diseño por defecto: fila para escritorio */
   height: 100%;
   width: 100%;
+  gap: 3px; /* Espacio de 3px entre los elementos internos (desktop) */
 }
 
-/*MAIN CONTAINER*/
+/* ----------------------------------------------------------------------------------------- */
+/* SHARED SIDEBAR STYLES (applies to both left nav and right info panel) */
+.lateral_menu_structure {
+  height: 99%; /* Ocupa casi toda la altura del frame */
+  display: inline-block; /* Ocupa su contenido */
+  background-color: rgba(0, 0, 0, 0.76); /* Fondo semi-transparente */
+  backdrop-filter: blur(21.299999237060547px); /* Efecto de desenfoque */
+  overflow-y: hidden; /* Por defecto oculto, los paneles individuales controlarán su scroll */
+  z-index: 10;
+  box-sizing: border-box; /* Asegura que padding y border se incluyan en el width/height */
+  border-radius: 0; /* Por defecto sin border-radius en escritorio */
+}
+
+/* ----------------------------------------------------------------------------------------- */
+/* LEFT NAVIGATION SIDEBAR (Desktop specific) */
+.lateralMenu_nav_leftSide {
+  position: relative;
+  width: 225px; /* Ancho fijo para escritorio */
+  display: flex; /* Flexbox para distribuir logo y enlaces */
+  flex-direction: column;
+  justify-content: space-between; /* Empuja logo arriba y enlaces abajo */
+  flex-shrink: 0; /* Evita que la sidebar se encoja */
+  padding: 20px 30px; /* Padding interno */
+}
+
+/* ----------------------------------------------------------------------------------------- */
+/* RIGHT INFO PANEL (Desktop specific) */
+.lateralMenu_info_rightSide {
+  width: 0%; /* Por defecto oculto en escritorio (hasta que se selecciona un item) */
+  transition: all 0.4s ease; /* Transición suave al abrir/cerrar */
+  overflow: hidden; /* Oculta el contenido desbordado cuando está cerrado */
+}
+
+/* ----------------------------------------------------------------------------------------- */
+/* SEPARATION SPACE (Hidden on mobile) */
 .separationSpace_between_leftSide_rightSide {
-  margin: auto;
   height: 100%;
-  width: 100%;
+  width: 100%; /* Ocupa el espacio restante en fila */
   z-index: 0;
 }
-.lateral_menu_structure {
-  height: 99%;
-  display: inline-block;
-  background-color: rgba(0, 0, 0, 0.76);
-  backdrop-filter: blur(21.299999237060547px);
-  margin-top: 4px;
-  overflow-y: auto;
-  z-index: 10;
-}
-.lateralMenu_nav_leftSide {
-  margin-left: 5px;
-  position: relative;
-  width: 225px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex-shrink: 0;
-  padding: 20px 30px;
-}
-.lateralMenu_info_rightSide {
-  margin-right: 5px;
-  width: 0%;
-  transition: all 0.4s ease;
-  overflow: hidden;
-}
 
-/* Clases dinámicas para cada sección */
-.rightPanel_me {
-  width: 40vw;
-  color: white;
-  padding: 36px;
-  display: flex;
-  flex-direction: column;
-  min-height: 0; /* evita que los hijos corten overflow */
-  overflow: hidden;
-}
-
-.rightPanel_projects {
-  width: 160vw;
-  color: white;
-}
-
-.rightPanel_tools {
-  width: 34vw;
-  color: white;
-  padding: 34px;
-  display: inline-block;
-}
-
-.rightPanel_contact {
-  width: 40%;
-  color: white;
-}
-
-.rightPanel_content {
-  padding: 20px;
-}
-
-/*LOGO*/
+/* ----------------------------------------------------------------------------------------- */
+/* LOGO SECTION (Shared between desktop and mobile, but hidden on very small mobile by media query) */
 .logo__component {
-  z-index: inherit;
-  padding-bottom: 50px;
+  z-index: inherit; /* Hereda z-index del padre */
+  padding-bottom: 50px; /* Espacio debajo del logo */
 }
 .logo__size {
   font-weight: normal;
@@ -109,7 +91,7 @@ body {
   font-family: 'Nico Moji', sans-serif;
 }
 .name_logo__turcoise {
-  color: #00feff;
+  color: #00feff; /* Color turquesa */
 }
 .name_logo__white {
   color: white;
@@ -121,57 +103,123 @@ body {
   letter-spacing: 0.05em;
 }
 
-/* Estilos para los ENLACES DE NAVEGACIÓN (parte inferior) */
-
+/* ----------------------------------------------------------------------------------------- */
+/* NAVIGATION LINKS (Desktop specific - visible in lateralMenu_nav_leftSide) */
 .nav_links {
   font-family: 'Nico Moji', sans-serif;
-  list-style: none;
+  list-style: none; /* Quita los puntos de lista */
   padding: 0;
   margin: 0;
   font-size: 1.25rem;
-  color: white;
+  color: white; /* Color por defecto de los enlaces */
 }
 
 .nav_item {
-  margin-bottom: 15px;
+  margin-bottom: 15px; /* Espacio entre cada enlace */
   cursor: pointer;
-  position: relative;
-  transition: all 0.3s ease; /* animación suave */
+  position: relative; /* Para el posicionamiento del pseudo-elemento (punto) */
+  padding-left: 20px; /* Deja espacio para el punto y el movimiento */
+  transition: transform 0.3s ease-out, color 0.3s ease-out; /* Transiciones suaves */
 }
 
 .nav_item:last-child {
   margin-bottom: 0;
 }
 
-/* Punto para el item ACTIVO */
+/* ESTILOS PARA EL ITEM DE NAVEGACIÓN ACTIVO (DESKTOP) */
+.nav_item.active {
+  transform: translateX(8px); /* Se mueve 8px a la derecha */
+  color: #00feff; /* Cambia el color del texto a turquesa */
+}
+
+/* CÍRCULO TURQUESA (SOLO EN ITEM ACTIVO DE DESKTOP) */
 .nav_item.active::before {
-  content: '•'; /* el punto */
-  color: #00feff; /* turquesa brillante */
+  content: '•'; /* El carácter del punto */
+  color: #00feff; /* Turquesa brillante */
   font-size: 1.5rem;
   line-height: 1;
   position: absolute;
-  left: -14px; /* distancia entre punto y texto */
+  left: 0px; /* Posicionado al inicio del padding-left */
   top: 50%;
   transform: translateY(-50%);
   opacity: 1;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Mueve ligeramente a la derecha el item activo */
-.nav_item.active {
-  transform: translateX(8px); /* se desplaza 8px */
-  color: #00feff; /* opcional: cambiar color al activo */
+/* EFECTO HOVER PARA LOS ITEMS NO ACTIVOS (DESKTOP) */
+.nav_item:hover:not(.active) {
+  /* Aplica solo si NO tiene la clase 'active' */
+  color: #00feff; /* Cambia color al turquesa */
+  transform: translateX(4px); /* Pequeño desplazamiento al pasar el ratón */
+}
+/* Opcional: para que el punto no aparezca en hover si no está activo */
+.nav_item:hover:not(.active)::before {
+  content: ''; /* Asegura que no hay punto */
 }
 
-/* Opcional: hover para los no activos */
-.nav_item:hover {
-  color: #00feff;
-  transform: translateX(4px); /* pequeño desplazamiento al pasar el mouse */
+/* ----------------------------------------------------------------------------------------- */
+/* RIGHT PANEL DYNAMIC WIDTH CLASSES */
+.rightPanel_me {
+  width: 40vw; /* Ancho específico para la sección "Me" */
+  color: white;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto; /* Permite scroll interno */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE */
+}
+.rightPanel_me::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
 }
 
-/*RIGHT NAVS*/
+.rightPanel_projects {
+  width: 160vw; /* Puede ser un error tipográfico, 160vw es muy ancho */
+  /* Normalmente sería un % o un valor fijo para proyectos */
+  /* Sugiero revisar este valor para desktop */
+  color: white;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.rightPanel_projects::-webkit-scrollbar {
+  display: none;
+}
 
-/*ME*/
+.rightPanel_tools {
+  width: 34vw;
+  color: white;
+  padding: 34px;
+  display: inline-block; /* Ocupa el espacio de su contenido */
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.rightPanel_tools::-webkit-scrollbar {
+  display: none;
+}
+
+.rightPanel_contact {
+  width: 40%;
+  color: white;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.rightPanel_contact::-webkit-scrollbar {
+  display: none;
+}
+
+/* General padding if a specific class doesn't set it */
+.rightPanel_content {
+  padding: 20px;
+}
+
+/* ----------------------------------------------------------------------------------------- */
+/* CONTENT SPECIFIC STYLES (Me, Projects, Tools, Contact) */
+
+/* ME SECTION */
 .portfolio_picture_container {
   display: flex;
   height: 186px;
@@ -205,38 +253,37 @@ body {
 .portfolio_picture_text {
   max-height: calc(
     100vh - 250px
-  ); /* ocupa todo el espacio disponible menos cabecera/logo */
+  ); /* Ajustado para dejar espacio a la foto y padding */
   padding: 12px 0;
   line-height: 1.6;
   font-size: 17px;
   color: #ffffff;
   text-align: left;
   display: block;
-  font-family: 'Inter';
-  overflow-y: auto;
+  font-family: 'Inter', sans-serif;
+  overflow-y: auto; /* Permite scroll si el texto es largo */
   scrollbar-width: none; /* Firefox oculta scrollbar */
   -ms-overflow-style: none; /* IE oculta scrollbar */
 }
-
 .portfolio_picture_text::-webkit-scrollbar {
   display: none; /* Chrome/Safari oculta scrollbar */
 }
 
-/*TOOLS*/
-
+/* TOOLS SECTION */
 .tools_grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(120px, 1fr)
+  ); /* Columnas adaptativas */
   gap: 15px;
   justify-items: center;
   padding: 10px;
-  max-height: 100%; /* evita desbordar */
-  overflow-y: auto; /* scroll interno */
+  max-height: 100%;
+  overflow-y: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
-
-/* Ocultar scrollbar en grid */
 .tools_grid::-webkit-scrollbar {
   display: none;
 }
@@ -251,28 +298,26 @@ body {
 .mask_tools_icons {
   width: 91px;
   height: 91px;
-  background-color: rgba(255, 255, 255, 0.7); /* div negro */
-  /* Hacer agujero con la máscara */
+  background-color: rgba(255, 255, 255, 0.7); /* Color base del "agujero" */
+  /* Propiedades de máscara para SVGs */
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
   -webkit-mask-size: contain;
-  -webkit-mask-composite: destination-out;
-
+  -webkit-mask-composite: destination-out; /* Esta es la que hace el agujero */
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
-  mask-composite: exclude;
+  mask-composite: exclude; /* Alternativa estándar a destination-out */
 
-  /* Permitir ver lo de atrás */
-  backdrop-filter: blur(10px); /* opcional: desenfoque */
+  backdrop-filter: blur(10px); /* Efecto de desenfoque detrás del icono */
 }
-
 .tool_name {
   font-size: 0.9rem;
   color: white;
   text-align: center;
-  font-family: 'Inter';
+  font-family: 'Inter', sans-serif;
 }
+/* Mask URLs (assuming images are in /public/images/) */
 .mask_tools_icons__3DMAX {
   -webkit-mask: url('/images/3DMAX.svg') no-repeat center/contain;
   mask: url('/images/3DMAX.svg') no-repeat center/contain;
@@ -305,55 +350,55 @@ body {
   -webkit-mask: url('/images/Unreal.svg') no-repeat center/contain;
   mask: url('/images/Unreal.svg') no-repeat center/contain;
 }
-/*PONER EL SVG QUE TOCA*/
 .mask_tools_icons__figma {
   -webkit-mask: url('/images/figma.svg') no-repeat center/contain;
   mask: url('/images/figma.svg') no-repeat center/contain;
 }
 
-/*PROJECT*/
+/* PROJECTS SECTION */
 .projectList {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Permite que los items se envuelvan */
   gap: 1rem;
-  font-family: 'Inter';
+  font-family: 'Inter', sans-serif;
   padding: 30px;
+  overflow-y: auto; /* Asegura scroll si hay muchos proyectos */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.projectList::-webkit-scrollbar {
+  display: none;
 }
 
 .projectItem {
   background: #1e1e1e;
   border-radius: 12px;
   padding: 1rem;
-  width: calc(50% - 1rem);
+  width: calc(50% - 0.5rem); /* Dos columnas con un hueco */
   cursor: pointer;
   transition: transform 0.2s ease;
 }
-
 .projectItem:hover {
-  transform: scale(1.05);
+  transform: scale(
+    1.03
+  ); /* Ligeramente más pequeño para mantener proporciones en el hover global */
 }
 
 .projectThumbnail {
   width: 100%;
-  max-height: 200px; /* Limita la altura */
-  overflow: hidden; /* Oculta lo que se sale */
+  max-height: 200px;
+  overflow: hidden;
   border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #111; /* Fondo oscuro si la imagen no llena */
+  background: #111;
 }
-
-.projectThumbnail img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: cover; /* Recorta y centra la imagen */
-  border-radius: 8px;
-}
-
+.projectThumbnail img,
 .projectThumbnail iframe {
   width: 100%;
   height: 100%;
+  object-fit: cover;
   border-radius: 8px;
 }
 
@@ -361,7 +406,13 @@ body {
   background: #1e1e1e;
   border-radius: 12px;
   padding: 2rem;
-  font-family: 'Inter';
+  font-family: 'Inter', sans-serif;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.projectDetail::-webkit-scrollbar {
+  display: none;
 }
 
 .projectImage {
@@ -369,21 +420,19 @@ body {
   border-radius: 8px;
   margin-top: 1rem;
 }
-
 .projectVideo {
   margin-top: 1rem;
 }
 
 .projectLink {
-  color: #00bcd4; /* Turquesa */
+  color: #00bcd4;
   text-decoration: none;
   position: relative;
   transition: color 0.3s ease;
-  font-family: 'Inter';
+  font-family: 'Inter', sans-serif;
   margin-right: 5px;
   font-size: 17px;
 }
-
 .projectLink::after {
   content: '';
   position: absolute;
@@ -394,11 +443,9 @@ body {
   background-color: #00bcd4;
   transition: width 0.3s ease;
 }
-
 .projectLink:hover {
-  color: #008c9e; /* Un tono más oscuro */
+  color: #008c9e;
 }
-
 .projectLink:hover::after {
   width: 100%;
 }
@@ -411,16 +458,17 @@ body {
   padding: 8px 16px;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-family: 'Inter';
+  font-family: 'Inter', sans-serif;
   font-size: 17px;
+  margin-top: 1rem;
 }
 .backButton:hover {
-  background-color: #2e2e2e; /* Un poco más claro */
-  transform: scale(1.05); /* Hace un pequeño zoom */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra suave */
+  background-color: #2e2e2e;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/*contactos*/
+/* CONTACT SECTION */
 .contactContainer {
   display: flex;
   flex-direction: column;
@@ -428,7 +476,13 @@ body {
   color: #fff;
   padding: 30px;
   font-size: 17px;
-  font-family: 'Inter';
+  font-family: 'Inter', sans-serif;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.contactContainer::-webkit-scrollbar {
+  display: none;
 }
 
 .contactList {
@@ -437,9 +491,8 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px; /* separa los enlaces */
+  gap: 12px;
 }
-
 .contactLink {
   color: #00bcd4;
   text-decoration: none;
@@ -447,17 +500,18 @@ body {
   transition: color 0.3s ease, transform 0.2s ease;
 }
 .contactLink_no_hover {
-  color: #00bcd4;
+  color: #00bcd4; /* For items like email/phone that aren't links */
   text-decoration: none;
   font-size: 1.1rem;
+  cursor: default; /* No pointer cursor */
 }
-
 .contactLink:hover {
   color: #008c9e;
   transform: translateX(4px);
 }
 
-/*FONDO*/
+/* ----------------------------------------------------------------------------------------- */
+/* SHADER BACKGROUND */
 .shaderBackground {
   position: fixed;
   top: 0;
@@ -467,295 +521,307 @@ body {
   z-index: -1;
 }
 .shaderBackground iframe {
-  pointer-events: none;
+  pointer-events: none; /* Permite clic a través del iframe */
 }
 
-@media (max-width: 500px) {
-  /* Ajustes generales */
-  .main_container_for_web_structure,
-  .frame_container_for_web_elements,
-  .frame_container_for_web_elements__layout {
-    flex-direction: column;
-    height: 100vh;
-    width: 100vw;
-  }
-
-  .frame_container_for_web_elements {
-    border: none; /* quita bordes para ahorrar espacio */
-  }
-
-  /* Menú lateral (ahora en la parte superior) */
-  .lateralMenu_nav_leftSide {
-    width: 100%;
-    height: auto;
-    margin-left: 0;
-    padding: 10px;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-  }
-
-  .logo__component {
-    display: none; /* Oculta el logo en móviles para más espacio */
-  }
-
-  .nav_links {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    font-size: 1rem;
-  }
-
-  .nav_item {
-    margin-bottom: 0;
-  }
-
-  .nav_item.active::before {
-    display: none; /* quita el punto en móvil */
-  }
-
-  .nav_item.active {
-    transform: none;
-    color: #00feff;
-  }
-
-  /* Panel derecho */
-  .lateralMenu_info_rightSide {
-    width: 100%;
-    margin-right: 0;
-    flex-grow: 1;
-    overflow: hidden; /* controla desbordes */
-  }
-
-  .rightPanel_me,
-  .rightPanel_projects,
-  .rightPanel_tools,
-  .rightPanel_contact {
-    width: 100%;
-    padding: 15px;
-    box-sizing: border-box;
-    height: 100%;
-    max-height: calc(100vh - 60px); /* resta altura del menú */
-    overflow: hidden; /* que no salga nada del panel */
-  }
-
-  /* Scroll solo en textos largos */
-  .portfolio_picture_text {
-    max-height: calc(100vh - 250px);
-    overflow-y: auto;
-    font-size: 0.95rem;
-  }
-
-  /* Ajustes en Tools */
-  .rightPanel_tools {
-    height: calc(100vh - 60px); /* resto espacio del menú */
-    overflow: hidden; /* evita desbordar el panel */
-  }
-
-  .tools_grid {
-    max-height: 100%; /* ocupa todo el panel */
-    overflow-y: auto; /* scroll solo si hay demasiados iconos */
-    padding-right: 6px; /* para no tapar con el scrollbar */
-  }
-
-  .tools_grid::-webkit-scrollbar {
-    width: 6px;
-  }
-  .tools_grid::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 3px;
-  }
-  .tools_grid {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
-  }
-
-  .mask_tools_icons {
-    width: 60px;
-    height: 60px;
-  }
-
-  .tool_name {
-    font-size: 0.8rem;
-  }
-
-  /* Ajustes en Projects */
-  .projectList {
-    flex-direction: column;
-    padding: 10px;
-    gap: 10px;
-  }
-
-  .projectItem {
-    width: 100%;
-    padding: 10px;
-  }
-
-  .projectThumbnail {
-    max-height: 150px;
-  }
-
-  /* Contactos */
-  .contactContainer {
-    padding: 15px;
-    font-size: 1rem;
-  }
-
-  .contactLink {
-    font-size: 1rem;
-  }
-
-  /* Fondo shader */
-  .shaderBackground {
-    width: 100vw;
-    height: 100vh;
-  }
+/* ----------------------------------------------------------------------------------------- */
+/* HAMBURGER MENU (Default hidden) */
+.hamburger {
+  display: none; /* Oculto por defecto en escritorio */
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 30px;
+  height: 24px;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 1000;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0; /* Asegura que no tenga padding */
+}
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.hamburger_active span:nth-child(1) {
+  transform: rotate(45deg) translateY(10px);
+}
+.hamburger_active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger_active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-10px);
 }
 
+/* MOBILE NAVIGATION MENU (Default hidden / off-screen) */
+.mobile_nav {
+  position: fixed;
+  top: 0;
+  right: -100%; /* Oculto a la derecha */
+  width: 70%; /* Ancho del menú desplegable */
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95); /* Fondo oscuro semi-transparente */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: right 0.4s ease; /* Transición suave al abrir/cerrar */
+  z-index: 900;
+}
+.mobile_nav_open {
+  right: 0; /* Se muestra al abrir */
+}
+.nav_links_mobile {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+.nav_links_mobile li {
+  margin: 20px 0;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.nav_links_mobile li:hover,
+.nav_item_active_mobile {
+  /* Clase para el item activo en móvil */
+  color: #00feff;
+}
+
+/* ----------------------------------------------------------------------------------------- */
+/* MEDIA QUERIES - RESPONSIVE DESIGN */
+/* ----------------------------------------------------------------------------------------- */
+
+/* TABLET AND SMALLER DESKTOPS (Max-width 900px) */
 @media (max-width: 900px) {
-  /* Ajustes generales */
+  /* GENERAL LAYOUT ADJUSTMENTS */
   .main_container_for_web_structure,
-  .frame_container_for_web_elements,
   .frame_container_for_web_elements__layout {
-    flex-direction: column;
-    height: 100vh;
-    width: 100vw;
-  }
-
-  .frame_container_for_web_elements {
-    border: none; /* quita bordes para ahorrar espacio */
-  }
-
-  /* Menú lateral (ahora en la parte superior) */
-  .lateralMenu_nav_leftSide {
+    flex-direction: column; /* Apila los elementos verticalmente */
+    height: 100%; /* Permite que el frame se adapte dentro del main container */
     width: 100%;
-    height: auto;
-    margin-left: 0;
-    padding: 15px;
-    flex-direction: row;
-    justify-content: space-around;
+    /* Centra el contenido vertical y horizontalmente en la columna */
+    justify-content: center;
     align-items: center;
+    gap: 0; /* No queremos gap entre los elementos apilados en móvil */
   }
 
-  .logo__component {
-    display: none; /* Oculta el logo para ganar espacio */
+  /* Mantener el borde del frame visible y añadir border-radius */
+  .frame_container_for_web_elements {
+    height: 97vh; /* Mantener la altura definida */
+    width: 98vw; /* Mantener el ancho definido */
+    margin: auto; /* Centrarlo */
+    border: 5px solid black; /* Borde visible */
+    padding: 3px; /* Mantiene el padding interno del borde */
+    border-radius: 30px; /* Borde redondeado estilo iPhone */
   }
 
-  .nav_links {
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-    font-size: 1.1rem;
+  /* HAMBURGER MENU VISIBILITY */
+  .hamburger {
+    display: flex; /* Muestra el botón de hamburguesa */
   }
 
-  .nav_item {
-    margin-bottom: 0;
+  /* HIDE DESKTOP SIDEBAR */
+  .lateralMenu_nav_leftSide {
+    display: none; /* Oculta la barra de navegación lateral completa */
   }
 
-  .nav_item.active::before {
-    display: none; /* quita el punto en pantallas estrechas */
+  /* HIDE SEPARATION SPACE */
+  .separationSpace_between_leftSide_rightSide {
+    display: none; /* Oculta el espacio separador */
   }
 
-  .nav_item.active {
-    transform: none;
-    color: #00feff;
-  }
-
-  /* Panel derecho */
+  /* RIGHT INFO PANEL ADJUSTMENTS */
   .lateralMenu_info_rightSide {
-    width: 100%;
-    margin-right: 0;
-    flex-grow: 1;
-    overflow: hidden;
+    width: 100%; /* El panel derecho ocupa todo el ancho disponible */
+    height: 100%; /* Ocupa el 100% de la altura del frame_container_for_web_elements__layout */
+    margin: auto; /* Centra el panel derecho vertical y horizontalmente dentro de su padre */
+    box-sizing: border-box; /* Incluye padding y border en el tamaño total */
+    border-radius: 25px; /* Border-radius para el panel derecho en móvil */
   }
 
+  /* SPECIFIC RIGHT PANEL SECTIONS */
   .rightPanel_me,
   .rightPanel_projects,
   .rightPanel_tools,
   .rightPanel_contact {
-    width: 100%;
+    width: 100%; /* Todas las secciones de contenido ocupan el 100% del ancho */
     padding: 20px;
     box-sizing: border-box;
-    height: 100%;
-    max-height: calc(100vh - 70px); /* deja espacio para nav superior */
-    overflow-y: auto; /* scroll solo si hay mucho contenido */
-    -webkit-overflow-scrolling: touch; /* scroll suave */
+    height: 100%; /* Ocupa el 100% de la altura del panel derecho */
+    max-height: 100%; /* Asegura que no desborde del padre */
+    overflow-y: auto; /* Habilita scroll si el contenido es largo */
+    -webkit-overflow-scrolling: touch; /* Suaviza el scroll en iOS */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE */
   }
-
-  /* Scroll invisible */
   .rightPanel_me::-webkit-scrollbar,
   .rightPanel_projects::-webkit-scrollbar,
   .rightPanel_tools::-webkit-scrollbar,
   .rightPanel_contact::-webkit-scrollbar {
-    display: none; /* Chrome, Safari */
+    display: none; /* Oculta la barra de scroll en Webkit */
   }
 
-  .rightPanel_me,
-  .rightPanel_projects,
-  .rightPanel_tools,
-  .rightPanel_contact {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE */
+  /* NAVIGATION LINKS (No dot, no transform for active in mobile) */
+  .nav_item.active::before {
+    display: none; /* Oculta el punto activo en pantallas pequeñas */
+  }
+  .nav_item.active {
+    transform: none; /* Elimina el movimiento horizontal */
+    color: #00feff; /* Mantiene el color turquesa */
+  }
+  .nav_item:hover:not(.active) {
+    transform: none; /* Desactiva el hover-transform en móvil */
+    color: white; /* Mantiene el color por defecto en hover */
+  }
+  .nav_item:hover:not(.active)::before {
+    content: ''; /* Asegura que no haya punto en hover móvil */
   }
 
-  /* Ajustes en ME: texto ocupa todo el panel */
+  /* LOGO SECTION (Optional: hide logo on tablets too) */
+  .logo__component {
+    display: none; /* Oculta el logo en tablets/móviles para ganar espacio */
+  }
+
+  /* OTHER CONTENT ADJUSTMENTS FOR TABLETS */
   .portfolio_picture_text {
-    max-height: calc(100vh - 300px); /* ajusta altura según cabecera */
-    overflow-y: auto;
+    max-height: calc(100% - 100px); /* Ajusta la altura del texto "Me" */
     font-size: 1rem;
     line-height: 1.5;
   }
-
-  /* Ajustes en Tools */
   .tools_grid {
-    max-height: 100%;
-    overflow-y: auto;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(100px, 1fr)
+    ); /* Iconos más pequeños */
     padding: 10px;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   }
-
-  .tools_grid::-webkit-scrollbar {
-    display: none; /* ocultar scrollbar */
-  }
-
   .mask_tools_icons {
     width: 70px;
     height: 70px;
   }
-
   .tool_name {
     font-size: 0.9rem;
   }
-
-  /* Ajustes en Projects */
   .projectList {
-    flex-direction: column;
+    flex-direction: column; /* Proyectos en una sola columna */
     padding: 15px;
     gap: 15px;
   }
-
   .projectItem {
-    width: 100%;
+    width: 100%; /* Cada proyecto ocupa el 100% del ancho */
     padding: 12px;
   }
-
   .projectThumbnail {
     max-height: 180px;
   }
-
-  /* Contactos */
   .contactContainer {
     padding: 20px;
     font-size: 1.05rem;
   }
-
   .contactLink {
     font-size: 1.05rem;
   }
+}
 
-  /* Fondo shader */
-  .shaderBackground {
-    width: 100vw;
-    height: 100vh;
+/* ----------------------------------------------------------------------------------------- */
+/* MOBILE PHONES (Max-width 500px) */
+@media (max-width: 500px) {
+  /* MAIN LAYOUT Adjustments (Refinement for very small screens) */
+  .frame_container_for_web_elements__layout {
+    /* Ya está en column y centrado del anterior media query,
+       aquí solo se asegura que no haya gap accidental */
+    gap: 0;
+  }
+
+  /* No se necesitan cambios adicionales para el frame o el rightPanel aquí
+     ya que se gestionan adecuadamente en la media query de 900px.
+     Mantendremos solo los refinamientos específicos para 500px. */
+
+  /* MOBILE NAV LINKS (Horizontal, for a potential top bar) */
+  /* Si el mobile_nav es un slide-out, estos nav_links styles podrían no usarse,
+     sino nav_links_mobile. */
+  .nav_links {
+    display: flex;
+    flex-direction: row; /* Enlaces en fila */
+    gap: 10px;
+    font-size: 1rem;
+    justify-content: space-around; /* Distribuye horizontalmente */
+    width: 100%; /* Ocupa todo el ancho */
+    background-color: black; /* Fondo para la barra de navegación superior */
+    padding: 10px 0; /* Padding arriba/abajo */
+    position: fixed; /* Fija la barra en la parte superior */
+    top: 0;
+    left: 0;
+    z-index: 500; /* Por debajo de la hamburguesa */
+  }
+  .nav_item {
+    margin-bottom: 0; /* No hay margen inferior */
+    padding-left: 0; /* No hay padding izquierdo */
+  }
+
+  /* RIGHT INFO PANEL ADJUSTMENTS (refinements for smaller screens) */
+  /* Si la navegación móvil es un menú desplegable, el contenido
+     del panel derecho no debería necesitar un margen superior por esa nav fija. */
+  .lateralMenu_info_rightSide {
+    margin-top: 0; /* Elimina cualquier margen superior potencial causado por una nav fija */
+  }
+
+  /* SPECIFIC RIGHT PANEL SECTIONS */
+  .rightPanel_me,
+  .rightPanel_projects,
+  .rightPanel_tools,
+  .rightPanel_contact {
+    padding: 15px; /* Padding más pequeño */
+  }
+
+  /* ME SECTION */
+  .portfolio_picture_text {
+    max-height: calc(
+      100% - 200px
+    ); /* Ajusta altura para móvil, dejando espacio para la imagen */
+    font-size: 0.95rem;
+  }
+
+  /* TOOLS SECTION */
+  .tools_grid {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(80px, 1fr)
+    ); /* Iconos aún más pequeños */
+  }
+  .mask_tools_icons {
+    width: 60px;
+    height: 60px;
+  }
+  .tool_name {
+    font-size: 0.8rem;
+  }
+
+  /* PROJECTS SECTION */
+  .projectList {
+    padding: 10px;
+    gap: 10px;
+  }
+  .projectItem {
+    padding: 10px;
+  }
+  .projectThumbnail {
+    max-height: 150px;
+  }
+
+  /* CONTACT SECTION */
+  .contactContainer {
+    padding: 15px;
+    font-size: 1rem;
+  }
+  .contactLink {
+    font-size: 1rem;
   }
 }
