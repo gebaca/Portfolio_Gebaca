@@ -18,6 +18,8 @@ body {
   height: 100vh; /* Ocupa el 100% del viewport height */
   width: 100vw; /* Ocupa el 100% del viewport width */
   display: flex;
+  justify-content: center; /* Centra horizontalmente el frame */
+  align-items: center; /* Centra verticalmente el frame */
 }
 .frame_container_for_web_elements {
   height: 97vh;
@@ -26,6 +28,7 @@ body {
   border: 5px solid black; /* Borde visible en escritorio */
   padding: 3px; /* Añade un padding de 3px alrededor del contenido interno */
   border-radius: 0; /* Por defecto sin border-radius en escritorio */
+  /* margin-top se ajustará en la media query para móvil */
 }
 
 /*LAYOUT MAIN CONTAINER*/
@@ -68,6 +71,12 @@ body {
   width: 0%; /* Por defecto oculto en escritorio (hasta que se selecciona un item) */
   transition: all 0.4s ease; /* Transición suave al abrir/cerrar */
   overflow: hidden; /* Oculta el contenido desbordado cuando está cerrado */
+  display: flex; /* Añadido para controlar el layout de su contenido */
+  flex-direction: column; /* Contenido apilado */
+  justify-content: center; /* Centrar contenido verticalmente */
+  align-items: center; /* Centrar contenido horizontalmente */
+  text-align: center; /* Asegura que el texto dentro del logo también se centre */
+  color: white; /* Color del texto del logo */
 }
 
 /* ----------------------------------------------------------------------------------------- */
@@ -83,6 +92,9 @@ body {
 .logo__component {
   z-index: inherit; /* Hereda z-index del padre */
   padding-bottom: 50px; /* Espacio debajo del logo */
+  display: block; /* Por defecto visible en desktop (si está en el DOM) */
+  opacity: 1; /* Por defecto visible */
+  transition: opacity 0.3s ease; /* Transición suave para ocultar/mostrar */
 }
 .logo__size {
   font-weight: normal;
@@ -101,6 +113,12 @@ body {
   font-size: 0.85rem;
   margin-top: 5px;
   letter-spacing: 0.05em;
+}
+
+/* Clase para ocultar el logo, se usará en móvil por defecto o cuando se seleccione algo */
+.logo__component.hidden {
+  display: none;
+  opacity: 0;
 }
 
 /* ----------------------------------------------------------------------------------------- */
@@ -159,8 +177,12 @@ body {
 
 /* ----------------------------------------------------------------------------------------- */
 /* RIGHT PANEL DYNAMIC WIDTH CLASSES */
-.rightPanel_me {
-  width: 40vw; /* Ancho específico para la sección "Me" */
+/* Nota: Asegúrate de que estas clases de ancho solo se apliquen cuando
+   el contenido real (Me, Projects, etc.) está visible y el logo no. */
+.rightPanel_me,
+.rightPanel_projects,
+.rightPanel_tools,
+.rightPanel_contact {
   color: white;
   padding: 36px;
   display: flex;
@@ -169,51 +191,36 @@ body {
   overflow-y: auto; /* Permite scroll interno */
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE */
+  /* Estos anchos se anularán en móvil */
 }
-.rightPanel_me::-webkit-scrollbar {
+.rightPanel_me {
+  width: 40vw;
+}
+.rightPanel_projects {
+  width: 160vw; /* Revisa este valor si es un error tipográfico */
+}
+.rightPanel_tools {
+  width: 34vw;
+}
+.rightPanel_contact {
+  width: 40%;
+}
+
+.rightPanel_me::-webkit-scrollbar,
+.rightPanel_projects::-webkit-scrollbar,
+.rightPanel_tools::-webkit-scrollbar,
+.rightPanel_contact::-webkit-scrollbar {
   display: none; /* Chrome/Safari */
 }
 
-.rightPanel_projects {
-  width: 160vw; /* Puede ser un error tipográfico, 160vw es muy ancho */
-  /* Normalmente sería un % o un valor fijo para proyectos */
-  /* Sugiero revisar este valor para desktop */
-  color: white;
-  overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+/* Clase para ocultar el contenido de los paneles si el logo está visible, o viceversa */
+.rightPanel_content_wrapper {
+  display: none; /* Por defecto oculto si el logo está visible, se mostrará con JS */
 }
-.rightPanel_projects::-webkit-scrollbar {
-  display: none;
-}
-
-.rightPanel_tools {
-  width: 34vw;
-  color: white;
-  padding: 34px;
-  display: inline-block; /* Ocupa el espacio de su contenido */
-  overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-.rightPanel_tools::-webkit-scrollbar {
-  display: none;
-}
-
-.rightPanel_contact {
-  width: 40%;
-  color: white;
-  overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-.rightPanel_contact::-webkit-scrollbar {
-  display: none;
-}
-
-/* General padding if a specific class doesn't set it */
-.rightPanel_content {
-  padding: 20px;
+.rightPanel_content_wrapper.active {
+  display: block; /* O flex, dependiendo de cómo estructures el contenido */
+  width: 100%; /* Asegura que ocupe el espacio completo cuando esté activo */
+  height: 100%;
 }
 
 /* ----------------------------------------------------------------------------------------- */
@@ -529,7 +536,7 @@ body {
 .hamburger {
   display: none; /* Oculto por defecto en escritorio */
   position: fixed;
-  top: 20px;
+  top: 40px;
   right: 20px;
   width: 30px;
   height: 24px;
@@ -601,14 +608,20 @@ body {
 /* TABLET AND SMALLER DESKTOPS (Max-width 900px) */
 @media (max-width: 900px) {
   /* GENERAL LAYOUT ADJUSTMENTS */
-  .main_container_for_web_structure,
+  .main_container_for_web_structure {
+    /* No hay necesidad de cambiar flex-direction aquí, ya lo hace el layout interno */
+    align-items: flex-start; /* Alinea el frame a la parte superior */
+    padding-top: 20px; /* Añade un padding superior para bajar el frame */
+    /* Para centrar el frame horizontalmente, margin: auto en frame_container_for_web_elements es suficiente */
+  }
+
   .frame_container_for_web_elements__layout {
     flex-direction: column; /* Apila los elementos verticalmente */
     height: 100%; /* Permite que el frame se adapte dentro del main container */
     width: 100%;
     /* Centra el contenido vertical y horizontalmente en la columna */
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* Centra el lateralMenu_info_rightSide verticalmente */
+    align-items: center; /* Centra el lateralMenu_info_rightSide horizontalmente */
     gap: 0; /* No queremos gap entre los elementos apilados en móvil */
   }
 
@@ -616,7 +629,7 @@ body {
   .frame_container_for_web_elements {
     height: 97vh; /* Mantener la altura definida */
     width: 98vw; /* Mantener el ancho definido */
-    margin: auto; /* Centrarlo */
+    margin: 0 auto; /* Centrar horizontalmente, sin margin-top aquí */
     border: 5px solid black; /* Borde visible */
     padding: 3px; /* Mantiene el padding interno del borde */
     border-radius: 30px; /* Borde redondeado estilo iPhone */
@@ -644,9 +657,31 @@ body {
     margin: auto; /* Centra el panel derecho vertical y horizontalmente dentro de su padre */
     box-sizing: border-box; /* Incluye padding y border en el tamaño total */
     border-radius: 25px; /* Border-radius para el panel derecho en móvil */
+    /* Asegúrate de que el contenido interno (logo o secciones) sea centrado por sus propias reglas */
+    display: flex; /* Asegura que el contenido interno se gestione con flexbox */
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido (logo o secciones) verticalmente */
+    align-items: center; /* Centra el contenido (logo o secciones) horizontalmente */
   }
 
-  /* SPECIFIC RIGHT PANEL SECTIONS */
+  /* LOGO SECTION (Control de visibilidad en móvil) */
+  .logo__component {
+    display: none; /* Por defecto oculto en móvil */
+    padding-bottom: 0; /* No padding inferior cuando el logo es el único elemento visible */
+  }
+
+  /* Clase para mostrar el logo cuando no hay nada seleccionado */
+  .lateralMenu_info_rightSide.show-logo .logo__component {
+    display: block; /* O flex si tiene contenido interno que lo necesite */
+    opacity: 1;
+  }
+
+  /* Oculta las secciones de contenido cuando el logo está visible */
+  .lateralMenu_info_rightSide.show-logo .rightPanel_content_wrapper {
+    display: none;
+  }
+
+  /* Asegura que las secciones de contenido se muestren cuando están activas y el logo no */
   .rightPanel_me,
   .rightPanel_projects,
   .rightPanel_tools,
@@ -682,11 +717,6 @@ body {
   }
   .nav_item:hover:not(.active)::before {
     content: ''; /* Asegura que no haya punto en hover móvil */
-  }
-
-  /* LOGO SECTION (Optional: hide logo on tablets too) */
-  .logo__component {
-    display: none; /* Oculta el logo en tablets/móviles para ganar espacio */
   }
 
   /* OTHER CONTENT ADJUSTMENTS FOR TABLETS */
@@ -733,55 +763,21 @@ body {
 /* ----------------------------------------------------------------------------------------- */
 /* MOBILE PHONES (Max-width 500px) */
 @media (max-width: 500px) {
-  /* MAIN LAYOUT Adjustments (Refinement for very small screens) */
-  .frame_container_for_web_elements__layout {
-    /* Ya está en column y centrado del anterior media query,
-       aquí solo se asegura que no haya gap accidental */
-    gap: 0;
+  /* Refinamientos para pantallas muy pequeñas, si es necesario */
+  .main_container_for_web_structure {
+    padding-top: 15px; /* Ajuste para pantallas aún más pequeñas */
   }
 
-  /* No se necesitan cambios adicionales para el frame o el rightPanel aquí
-     ya que se gestionan adecuadamente en la media query de 900px.
-     Mantendremos solo los refinamientos específicos para 500px. */
-
-  /* MOBILE NAV LINKS (Horizontal, for a potential top bar) */
-  /* Si el mobile_nav es un slide-out, estos nav_links styles podrían no usarse,
-     sino nav_links_mobile. */
-  .nav_links {
-    display: flex;
-    flex-direction: row; /* Enlaces en fila */
-    gap: 10px;
-    font-size: 1rem;
-    justify-content: space-around; /* Distribuye horizontalmente */
-    width: 100%; /* Ocupa todo el ancho */
-    background-color: black; /* Fondo para la barra de navegación superior */
-    padding: 10px 0; /* Padding arriba/abajo */
-    position: fixed; /* Fija la barra en la parte superior */
-    top: 0;
-    left: 0;
-    z-index: 500; /* Por debajo de la hamburguesa */
-  }
-  .nav_item {
-    margin-bottom: 0; /* No hay margen inferior */
-    padding-left: 0; /* No hay padding izquierdo */
-  }
-
-  /* RIGHT INFO PANEL ADJUSTMENTS (refinements for smaller screens) */
-  /* Si la navegación móvil es un menú desplegable, el contenido
-     del panel derecho no debería necesitar un margen superior por esa nav fija. */
-  .lateralMenu_info_rightSide {
-    margin-top: 0; /* Elimina cualquier margen superior potencial causado por una nav fija */
-  }
-
-  /* SPECIFIC RIGHT PANEL SECTIONS */
   .rightPanel_me,
   .rightPanel_projects,
   .rightPanel_tools,
   .rightPanel_contact {
     padding: 15px; /* Padding más pequeño */
   }
+  .rightPanel_me {
+    padding-top: 0px;
+  }
 
-  /* ME SECTION */
   .portfolio_picture_text {
     max-height: calc(
       100% - 200px
@@ -789,7 +785,6 @@ body {
     font-size: 0.95rem;
   }
 
-  /* TOOLS SECTION */
   .tools_grid {
     grid-template-columns: repeat(
       auto-fit,
@@ -804,7 +799,6 @@ body {
     font-size: 0.8rem;
   }
 
-  /* PROJECTS SECTION */
   .projectList {
     padding: 10px;
     gap: 10px;
@@ -816,7 +810,6 @@ body {
     max-height: 150px;
   }
 
-  /* CONTACT SECTION */
   .contactContainer {
     padding: 15px;
     font-size: 1rem;
